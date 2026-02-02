@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twoje Finanse - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .expbtn {
+            display: inline-block;
+            padding: 10px 16px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .expbtn:hover {
+            background-color: #45a049;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card {
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="bi bi-wallet2 me-2"></i>Finanse App</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="mb-4">Witaj w swoim budżecie!</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card stat-card bg-primary text-white p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-uppercase small">Suma wydatków</h6>
+                        <h3>{{ total_expenses }} PLN</h3>
+                    </div>
+                    <i class="bi bi-cash-stack fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card bg-success text-white p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-uppercase small">Pozostało</h6>
+                        <h3>{{ total_balance }} PLN</h3>
+                    </div>
+                    <i class="bi bi-piggy-bank fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card bg-warning text-dark mb-3" style="cursor: pointer;">
+                <a href="{% url 'budget:account' %}" class="text-decoration-none text-dark d-block p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase small mb-2">Konta bankowe</h6>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-bank fs-5 me-2"></i>
+                                <span class="fw-bold">Zarządzaj: {{ transaction_count }}</span>
+                            </div>
+                        </div>
+                        <i class="bi bi-arrow-left-right fs-1 opacity-50"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card bg-info text-dark mb-3" style="cursor: pointer;">
+                <a href="{% url 'budget:saving_list' %}" class="text-decoration-none text-dark d-block p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-uppercase small">Oszczędności</h6>
+                            <div class="mt-2 d-flex align-items-center gap-1">
+                                <i class="bi bi-currency-dollar fs-4"></i>
+                                <span class="small fw-bold">Zarządzaj: {{ total_savings  }}</span>
+                            </div>
+                        </div>
+                        <i class="bi bi-wallet fs-1 opacity-50"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card stat-card bg-danger text-dark p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-uppercase small">Karty</h6>
+                        <h3></h3>
+                    </div>
+                    <i class="bi bi-credit-card fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+            <div class="card stat-card bg-secondary text-dark p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-uppercase small">Szczegóły</h6>
+                        <h3></h3>
+                    </div>
+                    <i class="bi bi-info-lg fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <!-- KATEGORIE -->
+        <div class="col-lg-3 mb-4">
+            <div class="card p-4 h-100">
+                <h5 class="card-title mb-4">Kategorie</h5>
+                <a href="{% url 'budget:category_add' %}"
+                   class="expbtn position-relative"
+                   style="top: 6px;">
+
+                    Dodaj kategorię
+                </a>
+
+                <div class="list-group list-group-flush mt-3">
+                    {% for category in categories %}
+                    <div class="list-group-item mb-1">
+                        {{ category.name }}
+                    </div>
+                    {% empty %}
+                    <div class="list-group-item text-muted">
+                        Brak kategorii
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- OSTATNIE WYDATKI -->
+        <div class="col-lg-9 mb-4">
+            <div class="card p-4 h-100">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="card-title mb-0">Ostatnie wydatki</h5>
+                    <a href="#" class="btn btn-sm btn-primary">Zobacz wszystkie</a>
+                </div>
+
+                <a href="{% url 'budget:expense_add' %}" class="expbtn mb-3">
+                    Dodaj wydatek
+                </a>
+
+                <div class="table-responsive">
+                    {% if transactions %}
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                        <tr>
+                            <th>Data</th>
+                            <th>Kwota</th>
+                            <th>Kategoria</th>
+                            <th>Opis</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for expense in transactions %}
+                        <tr>
+                            <td>{{ expense.date|date:"Y-m-d H:i" }}</td>
+                            <td class="fw-bold {% if expense.type == 'OUT' %}text-danger{% else %}text-success{% endif %}">
+                                {% if expense.type == 'OUT' %}-{% else %}+{% endif %}{{ expense.amount }} PLN
+                            </td>
+                            <td>{{ expense.category.name }}</td>
+                            <td>{{ expense.description|default:"No description" }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p class="text-muted">Nie masz jeszcze żadnych wydatków.</p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+                {% block content %}
+                {% endblock %}
+    </div>

@@ -1,0 +1,98 @@
+body {
+  background-color: #095083;
+  font-family: source-serif-pro,"Source Serif Pro",sans-serif;
+}
+h1 {
+  color: #ffffff;
+}
+
+p {
+  font-size: 12px;
+}
+form {
+    background: #ffffff;
+    padding: 20px;
+    width: 300px;
+    margin: 40px auto;
+    border-radius: 8px;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+.top-box {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+/* Menu */
+.menu-box {
+  background-color: #99afce;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.menu-box a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+.menu-box a:hover {
+  text-decoration: underline;
+}
+
+/* Środkowy formularz */
+.center-box {
+  background-color: #ffffff;
+  padding: 30px;
+  width: 400px;
+  margin: 50px auto; /* wyśrodkowanie */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.center-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.center-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.center-box button:hover {
+  background-color: #45a049;
+}
+
+.expbtn {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.expbtn:hover {
+    background-color: #45a049;
+}
+
+
+/*
+komentarz
+*/

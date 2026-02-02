@@ -1,0 +1,15 @@
+# CORE
+Django==6.0
+django-crispy-forms==2.5
+python-dotenv==1.2.1
+
+# API & SERIALIZATION
+# djangorestframework
+
+# TOOLS
+requests==2.32.5
+
+# DEV & TESTS
+pytest-django==4.9.0
+coverage==7.11.3
+black==26.1.0

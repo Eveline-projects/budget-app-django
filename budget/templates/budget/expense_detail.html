@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły wydatku</title>
+    <style>
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .detail-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 400px;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+        .detail-box h2 {
+            margin-top: 0;
+        }
+        .detail-row {
+            margin: 8px 0;
+        }
+        .detail-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<a href="{% url 'budget:expense' %}" class="btn">Powrót do listy</a>
+
+<div class="detail-box">
+    <h2>Szczegóły wydatku</h2>
+
+    <div class="detail-row">
+        <span class="detail-label">Data:</span> {{ expense.date|date:"Y-m-d H:i" }}
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Kwota:</span> {{ expense.amount }} PLN
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Kategoria:</span> {{ expense.get_category_display }}
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Opis:</span> {{ expense.description|default:"Brak" }}
+    </div>
+</div>
+
+</body>
+</html>

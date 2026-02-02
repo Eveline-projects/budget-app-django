@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saving</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <a href="{% url 'budget:saving_list' %}" class="btn btn-outline-info me-2">Powrót </a>
+</head>
+<body>
+
+
+<h2>Dodaj oszczędność</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Zapisz</button>
+</form>
+</body>
+</html>

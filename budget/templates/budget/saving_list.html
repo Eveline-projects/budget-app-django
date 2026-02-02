@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>oszczędności</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Twoja lista oszczędności</h1>
+        <a href="{% url 'budget:expense' %}" class="btn btn-outline-info me-2">Powrót </a>
+        <a href="{% url 'budget:saving_add' %}" class="btn btn-outline-secondary">Dodaj nową oszczędność</a>
+    </div>
+
+    {% if savings %}
+        <div class="list-group">
+            {% for saving in savings %}
+            <div class="list-group-item list-group-item-action mb-2">
+                <h5>{{ saving.saving_name }}</h5>
+                <p><strong>Typ:</strong> {{ saving.saving_type }}</p>
+                <p><strong>Kwota:</strong> {{ saving.saving_balance }} PLN</p>
+                <p><strong>Oprocentowanie:</strong> {{ saving.interest_rate }}%</p>
+                <a href="{% url 'budget:saving_detail' saving.pk %}" class="btn btn-primary btn-sm mt-2">Szczegóły</a>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">Nie masz jeszcze żadnych oszczędności.</p>
+    {% endif %}
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

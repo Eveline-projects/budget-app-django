@@ -1,0 +1,94 @@
+{
+    "users": [
+        {
+            "_username": "konto",
+            "user_type": "adult",
+            "user_id": 1,
+            "assigned_account": [
+                1,
+                4
+            ],
+            "assigned_expense": [
+                1,
+                2
+            ],
+            "_password_hash": "e03b1db5d86415908ff16472b0524bb86142e403f4b6d5e1e972131f39351fc8"
+        },
+        {
+            "_username": "konto2",
+            "user_type": "adult",
+            "user_id": 2,
+            "assigned_account": [
+                2,
+                3
+            ],
+            "assigned_expense": [
+                1,
+                2
+            ],
+            "_password_hash": "e03b1db5d86415908ff16472b0524bb86142e403f4b6d5e1e972131f39351fc8"
+        }
+    ],
+    "bank_accounts": [
+        {
+            "account_id": 1,
+            "user_id": 1,
+            "account_type": "ADMIN",
+            "balance": "0",
+            "is_active": true,
+            "assigned_expense_ids": [
+                2
+            ],
+            "_creation_date": "2025-12-03T18:12:46.846650"
+        },
+        {
+            "account_id": 2,
+            "user_id": 2,
+            "account_type": "CHILD",
+            "balance": "200",
+            "is_active": true,
+            "assigned_expense_ids": [],
+            "_creation_date": "2025-12-03T18:12:46.846664"
+        },
+        {
+            "account_id": 3,
+            "user_id": 2,
+            "account_type": "ADULT",
+            "balance": "500",
+            "is_active": true,
+            "assigned_expense_ids": [],
+            "_creation_date": "2025-12-03T18:12:46.846667"
+        },
+        {
+            "account_id": 4,
+            "user_id": 1,
+            "account_type": "CHILD",
+            "balance": "10",
+            "is_active": true,
+            "assigned_expense_ids": [],
+            "_creation_date": "2025-12-03T18:23:04.057093"
+        }
+    ],
+    "expenses": [
+        {
+            "category": "food",
+            "account_id": 1,
+            "date": "2025-12-03T18:12:46.846678",
+            "_expense_id": 1,
+            "amount": "1",
+            "description": "food"
+        },
+        {
+            "category": "food",
+            "account_id": 1,
+            "date": "2025-12-03T18:21:58.662440",
+            "_expense_id": 2,
+            "amount": "1",
+            "description": "jedzenie"
+        }
+    ],
+    "current_user_id": 1,
+    "next_user_id": 3,
+    "next_account_id": 5,
+    "next_expense_id": 3
+}
